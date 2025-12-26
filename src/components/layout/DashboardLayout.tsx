@@ -14,7 +14,8 @@ import {
   X,
   GraduationCap,
   Bell,
-  ChevronDown
+  ChevronDown,
+  ClipboardCheck
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -27,6 +28,7 @@ const navigationByRole = {
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { name: 'Users', href: '/users', icon: Users },
     { name: 'Courses', href: '/courses', icon: BookOpen },
+    { name: 'Assessments', href: '/assessments', icon: ClipboardCheck },
     { name: 'Batches', href: '/batches', icon: Calendar },
     { name: 'Analytics', href: '/analytics', icon: BarChart3 },
     { name: 'Settings', href: '/settings', icon: Settings },
@@ -35,12 +37,14 @@ const navigationByRole = {
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { name: 'My Batches', href: '/batches', icon: Calendar },
     { name: 'Courses', href: '/courses', icon: BookOpen },
+    { name: 'Assessments', href: '/assessments', icon: ClipboardCheck },
     { name: 'Students', href: '/students', icon: Users },
     { name: 'Settings', href: '/settings', icon: Settings },
   ],
   student: [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { name: 'My Courses', href: '/courses', icon: BookOpen },
+    { name: 'Assessments', href: '/assessments', icon: ClipboardCheck },
     { name: 'Schedule', href: '/schedule', icon: Calendar },
     { name: 'Grades', href: '/grades', icon: BarChart3 },
     { name: 'Settings', href: '/settings', icon: Settings },

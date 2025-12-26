@@ -9,6 +9,8 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Courses from "./pages/Courses";
 import CourseDetail from "./pages/CourseDetail";
+import Assessments from "./pages/Assessments";
+import TakeAssessment from "./pages/TakeAssessment";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -49,6 +51,22 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <CourseDetail />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/assessments" 
+        element={
+          <ProtectedRoute>
+            <Assessments />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/assessments/:id/take" 
+        element={
+          <ProtectedRoute>
+            <TakeAssessment />
           </ProtectedRoute>
         } 
       />
