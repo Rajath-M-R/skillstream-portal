@@ -45,6 +45,45 @@ export interface Announcement {
   type: 'info' | 'urgent' | 'reminder';
 }
 
+export interface Question {
+  id: string;
+  text: string;
+  type: 'mcq' | 'true-false';
+  options: string[];
+  correctAnswer: number;
+  points: number;
+}
+
+export interface Assessment {
+  id: string;
+  title: string;
+  courseId: string;
+  courseName: string;
+  description: string;
+  type: 'quiz' | 'exam' | 'assignment';
+  duration: number; // in minutes
+  totalQuestions: number;
+  totalPoints: number;
+  passingScore: number; // percentage
+  questions: Question[];
+  status: 'draft' | 'published';
+  dueDate?: string;
+}
+
+export interface AssessmentAttempt {
+  id: string;
+  assessmentId: string;
+  userId: string;
+  answers: { questionId: string; selectedAnswer: number }[];
+  score: number;
+  totalPoints: number;
+  percentage: number;
+  passed: boolean;
+  startedAt: string;
+  completedAt: string;
+  timeTaken: number; // in seconds
+}
+
 export const mockUsers: User[] = [
   { id: '1', name: 'John Admin', email: 'admin@skillstream.com', role: 'admin', status: 'active' },
   { id: '2', name: 'Sarah Mentor', email: 'mentor@skillstream.com', role: 'mentor', status: 'active' },
@@ -192,3 +231,220 @@ export const dashboardStats = {
     avgProgress: 68,
   },
 };
+
+export const mockAssessments: Assessment[] = [
+  {
+    id: '1',
+    title: 'React Fundamentals Quiz 1',
+    courseId: '1',
+    courseName: 'React Fundamentals',
+    description: 'Test your understanding of React basics including components and JSX.',
+    type: 'quiz',
+    duration: 15,
+    totalQuestions: 5,
+    totalPoints: 50,
+    passingScore: 60,
+    status: 'published',
+    dueDate: '2024-02-15',
+    questions: [
+      {
+        id: 'q1',
+        text: 'What is the correct way to create a React component?',
+        type: 'mcq',
+        options: [
+          'function MyComponent() { return <div>Hello</div>; }',
+          'class MyComponent { render() { return <div>Hello</div>; } }',
+          'const MyComponent = <div>Hello</div>;',
+          'React.create(MyComponent)'
+        ],
+        correctAnswer: 0,
+        points: 10
+      },
+      {
+        id: 'q2',
+        text: 'Which hook is used for state management in functional components?',
+        type: 'mcq',
+        options: ['useEffect', 'useState', 'useContext', 'useReducer'],
+        correctAnswer: 1,
+        points: 10
+      },
+      {
+        id: 'q3',
+        text: 'JSX stands for JavaScript XML.',
+        type: 'true-false',
+        options: ['True', 'False'],
+        correctAnswer: 0,
+        points: 10
+      },
+      {
+        id: 'q4',
+        text: 'What is the virtual DOM?',
+        type: 'mcq',
+        options: [
+          'A direct copy of the real DOM',
+          'A lightweight copy of the real DOM for efficient updates',
+          'A browser feature',
+          'A CSS framework'
+        ],
+        correctAnswer: 1,
+        points: 10
+      },
+      {
+        id: 'q5',
+        text: 'Props in React are read-only.',
+        type: 'true-false',
+        options: ['True', 'False'],
+        correctAnswer: 0,
+        points: 10
+      }
+    ]
+  },
+  {
+    id: '2',
+    title: 'TypeScript Advanced Exam',
+    courseId: '2',
+    courseName: 'Advanced TypeScript',
+    description: 'Comprehensive exam covering generics, utility types, and advanced patterns.',
+    type: 'exam',
+    duration: 30,
+    totalQuestions: 6,
+    totalPoints: 60,
+    passingScore: 70,
+    status: 'published',
+    dueDate: '2024-02-20',
+    questions: [
+      {
+        id: 'q1',
+        text: 'What does the "keyof" operator return?',
+        type: 'mcq',
+        options: [
+          'All values of an object',
+          'Union of all keys of a type',
+          'The first key of an object',
+          'A boolean'
+        ],
+        correctAnswer: 1,
+        points: 10
+      },
+      {
+        id: 'q2',
+        text: 'Generics allow you to write reusable, type-safe code.',
+        type: 'true-false',
+        options: ['True', 'False'],
+        correctAnswer: 0,
+        points: 10
+      },
+      {
+        id: 'q3',
+        text: 'Which utility type makes all properties optional?',
+        type: 'mcq',
+        options: ['Required<T>', 'Partial<T>', 'Pick<T>', 'Omit<T>'],
+        correctAnswer: 1,
+        points: 10
+      },
+      {
+        id: 'q4',
+        text: 'What is a discriminated union?',
+        type: 'mcq',
+        options: [
+          'A union with no common properties',
+          'A union with a common literal property for type narrowing',
+          'A type that cannot be used',
+          'An intersection type'
+        ],
+        correctAnswer: 1,
+        points: 10
+      },
+      {
+        id: 'q5',
+        text: 'The "never" type represents values that never occur.',
+        type: 'true-false',
+        options: ['True', 'False'],
+        correctAnswer: 0,
+        points: 10
+      },
+      {
+        id: 'q6',
+        text: 'Which syntax creates a mapped type?',
+        type: 'mcq',
+        options: [
+          'type Map = { [K in keyof T]: T[K] }',
+          'type Map = T extends U ? X : Y',
+          'type Map = T & U',
+          'type Map = T | U'
+        ],
+        correctAnswer: 0,
+        points: 10
+      }
+    ]
+  },
+  {
+    id: '3',
+    title: 'Python Basics Assessment',
+    courseId: '4',
+    courseName: 'Python for Data Science',
+    description: 'Quick assessment on Python fundamentals and data types.',
+    type: 'quiz',
+    duration: 10,
+    totalQuestions: 4,
+    totalPoints: 40,
+    passingScore: 50,
+    status: 'published',
+    questions: [
+      {
+        id: 'q1',
+        text: 'Which of the following is a mutable data type in Python?',
+        type: 'mcq',
+        options: ['tuple', 'string', 'list', 'int'],
+        correctAnswer: 2,
+        points: 10
+      },
+      {
+        id: 'q2',
+        text: 'Python uses indentation to define code blocks.',
+        type: 'true-false',
+        options: ['True', 'False'],
+        correctAnswer: 0,
+        points: 10
+      },
+      {
+        id: 'q3',
+        text: 'What is the output of: print(type([]))?',
+        type: 'mcq',
+        options: ["<class 'list'>", "<class 'array'>", "<class 'tuple'>", "<class 'dict'>"],
+        correctAnswer: 0,
+        points: 10
+      },
+      {
+        id: 'q4',
+        text: 'A dictionary in Python stores key-value pairs.',
+        type: 'true-false',
+        options: ['True', 'False'],
+        correctAnswer: 0,
+        points: 10
+      }
+    ]
+  }
+];
+
+export const mockAttempts: AssessmentAttempt[] = [
+  {
+    id: 'a1',
+    assessmentId: '1',
+    userId: '3',
+    answers: [
+      { questionId: 'q1', selectedAnswer: 0 },
+      { questionId: 'q2', selectedAnswer: 1 },
+      { questionId: 'q3', selectedAnswer: 0 },
+      { questionId: 'q4', selectedAnswer: 1 },
+      { questionId: 'q5', selectedAnswer: 0 }
+    ],
+    score: 50,
+    totalPoints: 50,
+    percentage: 100,
+    passed: true,
+    startedAt: '2024-01-20T10:00:00Z',
+    completedAt: '2024-01-20T10:12:30Z',
+    timeTaken: 750
+  }
+];
