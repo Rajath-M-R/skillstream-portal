@@ -11,6 +11,7 @@ import Courses from "./pages/Courses";
 import CourseDetail from "./pages/CourseDetail";
 import Assessments from "./pages/Assessments";
 import TakeAssessment from "./pages/TakeAssessment";
+import Schedule from "./pages/Schedule";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -112,6 +113,14 @@ function AppRoutes() {
       />
       <Route 
         path="/schedule" 
+        element={
+          <ProtectedRoute>
+            <Schedule />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/grades" 
         element={
           <ProtectedRoute>
             <Dashboard />
