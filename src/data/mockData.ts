@@ -70,6 +70,51 @@ export interface Assessment {
   dueDate?: string;
 }
 
+export interface Session {
+  id: string;
+  title: string;
+  courseId: string;
+  courseName: string;
+  type: 'live' | 'offline';
+  date: string;
+  time: string;
+  duration: number; // in minutes
+  meetingLink?: string;
+  instructor: string;
+  status: 'upcoming' | 'ongoing' | 'completed' | 'cancelled';
+}
+
+export interface RoadmapModule {
+  id: string;
+  courseId: string;
+  title: string;
+  order: number;
+  status: 'completed' | 'in-progress' | 'locked' | 'overdue';
+  dueDate: string;
+  completedDate?: string;
+  lessonsTotal: number;
+  lessonsCompleted: number;
+}
+
+export interface StudentAnalytics {
+  completionRate: number;
+  attendanceRate: number;
+  avgAssessmentScore: number;
+  totalLearningHours: number;
+  currentStreak: number;
+  skillLevel: 'beginner' | 'intermediate' | 'advanced';
+}
+
+export interface PendingTask {
+  id: string;
+  title: string;
+  type: 'assessment' | 'lesson' | 'assignment' | 'session';
+  courseId: string;
+  courseName: string;
+  dueDate: string;
+  priority: 'high' | 'medium' | 'low';
+}
+
 export interface AssessmentAttempt {
   id: string;
   assessmentId: string;
@@ -448,3 +493,147 @@ export const mockAttempts: AssessmentAttempt[] = [
     timeTaken: 750
   }
 ];
+
+export const mockSessions: Session[] = [
+  {
+    id: 's1',
+    title: 'React Hooks Deep Dive',
+    courseId: '1',
+    courseName: 'React Fundamentals',
+    type: 'live',
+    date: '2024-01-22',
+    time: '10:00 AM',
+    duration: 90,
+    meetingLink: 'https://zoom.us/j/123456789',
+    instructor: 'Sarah Mentor',
+    status: 'upcoming'
+  },
+  {
+    id: 's2',
+    title: 'TypeScript Generics Workshop',
+    courseId: '2',
+    courseName: 'Advanced TypeScript',
+    type: 'live',
+    date: '2024-01-23',
+    time: '2:00 PM',
+    duration: 60,
+    meetingLink: 'https://meet.google.com/abc-defg-hij',
+    instructor: 'Mike Chen',
+    status: 'upcoming'
+  },
+  {
+    id: 's3',
+    title: 'Python Data Structures Lab',
+    courseId: '4',
+    courseName: 'Python for Data Science',
+    type: 'offline',
+    date: '2024-01-24',
+    time: '11:00 AM',
+    duration: 120,
+    instructor: 'Dr. James Wilson',
+    status: 'upcoming'
+  }
+];
+
+export const mockRoadmapModules: RoadmapModule[] = [
+  {
+    id: 'rm1',
+    courseId: '1',
+    title: 'Introduction to React',
+    order: 1,
+    status: 'completed',
+    dueDate: '2024-01-10',
+    completedDate: '2024-01-09',
+    lessonsTotal: 5,
+    lessonsCompleted: 5
+  },
+  {
+    id: 'rm2',
+    courseId: '1',
+    title: 'Components & Props',
+    order: 2,
+    status: 'completed',
+    dueDate: '2024-01-15',
+    completedDate: '2024-01-14',
+    lessonsTotal: 6,
+    lessonsCompleted: 6
+  },
+  {
+    id: 'rm3',
+    courseId: '1',
+    title: 'State Management',
+    order: 3,
+    status: 'in-progress',
+    dueDate: '2024-01-25',
+    lessonsTotal: 8,
+    lessonsCompleted: 5
+  },
+  {
+    id: 'rm4',
+    courseId: '1',
+    title: 'React Hooks',
+    order: 4,
+    status: 'locked',
+    dueDate: '2024-02-01',
+    lessonsTotal: 7,
+    lessonsCompleted: 0
+  },
+  {
+    id: 'rm5',
+    courseId: '1',
+    title: 'Advanced Patterns',
+    order: 5,
+    status: 'locked',
+    dueDate: '2024-02-10',
+    lessonsTotal: 6,
+    lessonsCompleted: 0
+  }
+];
+
+export const mockPendingTasks: PendingTask[] = [
+  {
+    id: 'pt1',
+    title: 'Complete State Management Module',
+    type: 'lesson',
+    courseId: '1',
+    courseName: 'React Fundamentals',
+    dueDate: '2024-01-25',
+    priority: 'high'
+  },
+  {
+    id: 'pt2',
+    title: 'React Fundamentals Quiz 1',
+    type: 'assessment',
+    courseId: '1',
+    courseName: 'React Fundamentals',
+    dueDate: '2024-01-26',
+    priority: 'high'
+  },
+  {
+    id: 'pt3',
+    title: 'TypeScript Advanced Exam',
+    type: 'assessment',
+    courseId: '2',
+    courseName: 'Advanced TypeScript',
+    dueDate: '2024-02-20',
+    priority: 'medium'
+  },
+  {
+    id: 'pt4',
+    title: 'Attend React Hooks Session',
+    type: 'session',
+    courseId: '1',
+    courseName: 'React Fundamentals',
+    dueDate: '2024-01-22',
+    priority: 'medium'
+  }
+];
+
+export const mockStudentAnalytics: StudentAnalytics = {
+  completionRate: 68,
+  attendanceRate: 92,
+  avgAssessmentScore: 85,
+  totalLearningHours: 47,
+  currentStreak: 5,
+  skillLevel: 'intermediate'
+};
